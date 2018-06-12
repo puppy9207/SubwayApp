@@ -22,6 +22,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import static com.example.puppy.subwayapp.R.id.map;
 
@@ -40,6 +41,11 @@ public class Map extends Fragment implements OnMapReadyCallback,
     Double latitude = 37.344157;
     Double longitude = 126.736713;
 
+    double subLat[] = {37.395788,37.379736,37.414436,37.401243,37.446556,37.455646,37.494093
+    ,37.488071,37.505184,37.502671,37.488825};
+    double subLong[] = {126.652274,126.661714,126.676867,126.723928,126.702535,126.719913,126.723218,
+            126.752551,126.752424,126.774348,126.779543
+    };
     LocationManager manager1;
 
     public Map() {
@@ -66,6 +72,16 @@ public class Map extends Fragment implements OnMapReadyCallback,
         gMap.getUiSettings().setZoomControlsEnabled(true);
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
         gMap.animateCamera(zoom); //근거리 부드럽게 움직이기
+        for (int idx = 0; idx < subLat.length; idx++) {
+            // 1. 마커 옵션 설정 (만드는 과정)
+            MarkerOptions makerOptions = new MarkerOptions();
+            makerOptions // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
+                    .position(new LatLng(subLat[idx], subLong[idx]))
+                    .title("마커" + idx); // 타이틀.
+
+            // 2. 마커 생성 (마커를 나타냄)
+            gMap.addMarker(makerOptions);
+        }
 
     }
 
@@ -81,7 +97,7 @@ public class Map extends Fragment implements OnMapReadyCallback,
         float minDistance = 1;
 
         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+                || ActivityCompat.checkSelfPermission(getActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
 
             Toast.makeText(getActivity(),"위치정보를 받아올수 없습니다.",Toast.LENGTH_LONG).show();
             return;
@@ -91,7 +107,7 @@ public class Map extends Fragment implements OnMapReadyCallback,
     }
     private void stopLocationService(){
         if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(getActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED) {
+                || ActivityCompat.checkSelfPermission(getActivity(),android.Manifest.permission.ACCESS_COARSE_LOCATION)!=PackageManager.PERMISSION_GRANTED) {
 
             Toast.makeText(getActivity(), "위치정보를 받아올 수 없습니다.", Toast.LENGTH_LONG).show();
             return;

@@ -41,6 +41,7 @@ public class HomeMenu extends Fragment {
         map = (LinearLayout)root.findViewById(R.id.findLayout);
 
         myMenuLayout.setOnClickListener(v->{
+            //고객 정보가 없으면 넘어가지 않고 Toast를 띄움 띄우고 로그인 화면으로 다시 넘어감.
             MainActivity activity = (MainActivity)getActivity();
             activity.onFragmentChanged("MyMenu");
 

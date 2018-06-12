@@ -28,8 +28,8 @@ public class MyMenu extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_menu, container, false);
         btn4 = root.findViewById(R.id.button4);
         btn4.setOnClickListener(v -> {
-
-
+            MainActivity activity = (MainActivity)getActivity();
+            activity.onFragmentChanged("CustomMenuRegit");
         });
 
         return root;

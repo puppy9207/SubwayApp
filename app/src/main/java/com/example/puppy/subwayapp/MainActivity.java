@@ -12,12 +12,10 @@ public class MainActivity extends AppCompatActivity {
     Login    login;
     HomeMenu  home;
     MyMenu   myMenu;
+    CutsomMenuRegit cutsomMenuRegit;
     Map map;
     SignUp signUp;
-    Bundle bundle;
     FragmentManager manager;
-    GoogleMap gMap;
-    MapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         myMenu = new MyMenu();
         map = new Map();
         signUp = new SignUp();
+        cutsomMenuRegit = new CutsomMenuRegit();
     }
 
     public void onFragmentChanged(String command)
@@ -58,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 manager.beginTransaction()
                         .replace(R.id.container, signUp).commit();
                 break;
-            case "MyMenuRegit":
-
+            case "CustomMenuRegit":
+                manager.beginTransaction()
+                        .replace(R.id.container, cutsomMenuRegit).commit();
                 break;
 
         }
