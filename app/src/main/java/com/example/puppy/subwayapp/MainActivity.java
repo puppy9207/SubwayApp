@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     {
         switch (command)
         {
-            case "Login":
+            case "TaskLogin":
                 manager.beginTransaction()
                         .replace(R.id.container, login).commit();
                 break;

@@ -1,12 +1,9 @@
 package com.example.puppy.subwayapp;
 
 
-import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,16 +12,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.puppy.subwayapp.Task.TaskPost;
-import com.example.puppy.subwayapp.VO.ClientVO;
+import com.example.puppy.subwayapp.task.TaskPost;
+import com.example.puppy.subwayapp.vo.ClientVO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -42,7 +33,6 @@ public class SignUp extends Fragment
     };
 
     EditText et[] = new EditText[etId.length];
-    String result, equals;
     Button btn;
     CheckBox checkBox;
 
@@ -155,10 +145,4 @@ public class SignUp extends Fragment
         });
         return root;
     }
-
-
-
-
-
-
 }

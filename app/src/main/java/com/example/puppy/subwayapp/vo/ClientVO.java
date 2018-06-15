@@ -1,4 +1,4 @@
-package com.example.puppy.subwayapp.VO;
+package com.example.puppy.subwayapp.vo;
 
 import java.util.Optional;
 
