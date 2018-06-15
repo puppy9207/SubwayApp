@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="뺄 야채" />
+            android:text="소스" />
 
         <Button
             android:id="@+id/btn4"
@@ -43,10 +43,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="소스" />
+            android:text="뺄 야채" />
 
         <Button
             android:id="@+id/btn5"
+            style="@android:style/Widget.Holo.Light.ActionMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="치즈" />
+
+        <Button
+            android:id="@+id/btn6"
             style="@android:style/Widget.Holo.Light.ActionMode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

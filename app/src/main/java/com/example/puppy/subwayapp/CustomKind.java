@@ -21,8 +21,21 @@ import android.widget.TextView;
  */
 public class CustomKind extends Fragment {
 
-    GridView kindListView;
-    Spinner kindSpinner;
+    public interface CustomKindValue{
+        void kindValue(String kind, int price);
+    }
+
+    private CustomKindValue mCustomKindValue;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (getActivity()!=null && getActivity() instanceof CustomKindValue){
+            mCustomKindValue = (CustomKindValue)getActivity();
+        }
+    }
+
+    GridView kindList;
     TextView tv;
 
     int kindImg[] = {R.drawable.k1,R.drawable.k2,R.drawable.k3,R.drawable.k4,R.drawable.k5,R.drawable.k6,
@@ -35,7 +48,13 @@ public class CustomKind extends Fragment {
             "스파이시 이탈리안 아보카도", "스테이크 & 치즈", "스테이크 에그 & 치즈", "써브웨이 클럽", "써브웨이 멜트", "참치","터키","터키 베이컨",
             "터키 베이컨 아보카도", "베지", "웨스턴 에그 & 치즈"
     };
+    int kindPrice[] = {2900,2900,5100,5900,5600,
+            4300,4700,5100,4900,5900,5900,5900,5900,5600,
+            6300,6300,3900,5600,5900,4800,5100,5600,
+            6300,3900,2900
+    };
 
+    int kPrice;
     public CustomKind() {
         // Required empty public constructor
     }
@@ -45,57 +64,28 @@ public class CustomKind extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         ViewGroup root = (ViewGroup)inflater.inflate(R.layout.fragment_custom_kind, container, false);
-        kindListView = (GridView)root.findViewById(R.id.kindList);
+        kindList = (GridView)root.findViewById(R.id.kindList);
         MyAdapter gridAdapter = new MyAdapter(getContext(),R.layout.row,kindImg);
         tv = (TextView)root.findViewById(R.id.kindTv);
-        kindListView.setAdapter(gridAdapter);
-        kindListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        kindList.setAdapter(gridAdapter);
+        kindList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 tv.setText(kImgName[position]); // 디비에 보낼 상품 이름
+                kPrice = kindPrice[position];
             }
         });
+        String mkind = tv.getText().toString();
+        if (mCustomKindValue!=null){
+            mCustomKindValue.kindValue(mkind,kPrice);
+        }
+
+
         return root;
     }
-    class MyAdapter extends BaseAdapter {
-        Context context;
-        int layout;
-        int img[];
-        LayoutInflater inf;
 
-        public MyAdapter(Context context, int layout, int[] img) {
-            this.context = context;
-            this.layout = layout;
-            this.img = img;
-            inf = (LayoutInflater) context.getSystemService
-                    (Context.LAYOUT_INFLATER_SERVICE);
-        }
 
-        @Override
-        public int getCount() {
-            return img.length;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return img[position];
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView==null)
-                convertView = inf.inflate(layout, null);
-            ImageView ib = (ImageView) convertView.findViewById(R.id.imgButton);
-            ib.setImageResource(img[position]);
-
-            return convertView;
-        }
-    }
 
 }

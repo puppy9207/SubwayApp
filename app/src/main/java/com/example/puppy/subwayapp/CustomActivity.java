@@ -19,11 +19,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CustomActivity extends AppCompatActivity {
+public class CustomActivity extends AppCompatActivity implements CustomKind.CustomKindValue,CustomAdd.CustomAddValue{
 
     ViewPager vp;
-    Button btn1, btn2, btn3;
-
+    Button btn1, btn2, btn3, btn4, btn5, btn6;
+    int kPrice, aPrice;
 
 
     @Override
@@ -34,6 +34,9 @@ public class CustomActivity extends AppCompatActivity {
         btn1 = (Button)findViewById(R.id.btn1);
         btn2 = (Button)findViewById(R.id.btn2);
         btn3 = (Button)findViewById(R.id.btn3);
+        btn4 = (Button)findViewById(R.id.btn4);
+        btn5 = (Button)findViewById(R.id.btn5);
+        btn6 = (Button)findViewById(R.id.btn6);
 
         vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         vp.setCurrentItem(0);
@@ -44,6 +47,12 @@ public class CustomActivity extends AppCompatActivity {
         btn2.setTag(1);
         btn3.setOnClickListener(movePageListener);
         btn3.setTag(2);
+        btn4.setOnClickListener(movePageListener);
+        btn4.setTag(3);
+        btn5.setOnClickListener(movePageListener);
+        btn5.setTag(4);
+        btn6.setOnClickListener(movePageListener);
+        btn6.setTag(5);
 
 
     }
@@ -56,6 +65,16 @@ public class CustomActivity extends AppCompatActivity {
             vp.setCurrentItem(tag);
         }
     };
+
+    @Override
+    public void kindValue(String kind, int kPrice) {
+
+    }
+
+    @Override
+    public void addValue(String add, int aPrice) {
+
+    }
 
     private class pagerAdapter extends FragmentStatePagerAdapter
     {
@@ -74,6 +93,12 @@ public class CustomActivity extends AppCompatActivity {
                     return new CustomBread();
                 case 2:
                     return new CustomSource();
+                case 3:
+                    return new CustomVegit();
+                case 4:
+                    return new CustomCheese();
+                case 5:
+                    return new CustomAdd();
                 default:
                     return null;
             }
@@ -81,7 +106,7 @@ public class CustomActivity extends AppCompatActivity {
         @Override
         public int getCount()
         {
-            return 3;
+            return 6;
         }
     }
 
