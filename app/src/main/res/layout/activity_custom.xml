@@ -8,38 +8,58 @@
     android:orientation="vertical"
     tools:context="com.example.puppy.subwayapp.CustomActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btn1"
+            style="@android:style/Widget.Holo.Light.ActionMode"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:text="종류" />
 
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="샌드위치 종류 선택"
-                android:textColor="@color/green_lightest"
-                android:textSize="22sp" />
+        <Button
+            android:id="@+id/btn2"
+            style="@android:style/Widget.Holo.Light.ActionMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="빵" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <Button
+            android:id="@+id/btn3"
+            style="@android:style/Widget.Holo.Light.ActionMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="뺄 야채" />
 
-                <Spinner
-                    android:id="@+id/spinner2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+        <Button
+            android:id="@+id/btn4"
+            style="@android:style/Widget.Holo.Light.ActionMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="소스" />
 
-            </LinearLayout>
+        <Button
+            android:id="@+id/btn5"
+            style="@android:style/Widget.Holo.Light.ActionMode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="추가" />
 
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+
 </LinearLayout>
