@@ -1,6 +1,7 @@
 package com.example.puppy.subwayapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 /**
@@ -30,8 +32,8 @@ public class MyMenu extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_menu, container, false);
         btn4 = root.findViewById(R.id.button4);
         btn4.setOnClickListener(v -> {
-            MainActivity activity = (MainActivity)getActivity();
-            activity.onFragmentChanged("CustomMenuRegit");
+            Intent intent=new Intent(getActivity(),CustomActivity.class);
+            startActivity(intent);
         });
 
         return root;
