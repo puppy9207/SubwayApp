@@ -3,6 +3,8 @@ package com.example.puppy.subwayapp;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,8 @@ public class MyMenu extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_menu, container, false);
         btn4 = root.findViewById(R.id.button4);
         btn4.setOnClickListener(v -> {
-
-
+            MainActivity activity = (MainActivity)getActivity();
+            activity.onFragmentChanged("CustomMenuRegit");
         });
 
         return root;

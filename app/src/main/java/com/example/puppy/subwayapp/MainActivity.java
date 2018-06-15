@@ -1,11 +1,11 @@
 package com.example.puppy.subwayapp;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,10 +14,7 @@ public class MainActivity extends AppCompatActivity {
     MyMenu   myMenu;
     Map map;
     SignUp signUp;
-    Bundle bundle;
     FragmentManager manager;
-    GoogleMap gMap;
-    MapFragment mapFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         myMenu = new MyMenu();
         map = new Map();
         signUp = new SignUp();
+
     }
 
     public void onFragmentChanged(String command)
@@ -58,10 +56,6 @@ public class MainActivity extends AppCompatActivity {
                 manager.beginTransaction()
                         .replace(R.id.container, signUp).commit();
                 break;
-            case "MyMenuRegit":
-
-                break;
-
         }
     }
 
