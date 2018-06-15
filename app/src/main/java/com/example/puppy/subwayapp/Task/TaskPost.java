@@ -3,6 +3,10 @@ package com.example.puppy.subwayapp.Task;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,7 +19,7 @@ import java.net.URL;
  * @since 2018-06-13
  */
 
-public class TaskPost extends AsyncTask<String,String,String>
+public class TaskPost extends AsyncTask<String, String, Boolean>
 {
     private String url_str;     // 연결할 jsp주소 "54.213.190.199";
     private String sendMsg, receiveMsg;
@@ -27,10 +31,11 @@ public class TaskPost extends AsyncTask<String,String,String>
     }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected Boolean doInBackground(String... strings) {
         try {
             String str;
             URL url = new URL(url_str);
+            JSONParser jsonParser = new JSONParser();
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
             conn.setRequestProperty("Content-Type", "application/json");
@@ -51,16 +56,18 @@ public class TaskPost extends AsyncTask<String,String,String>
                 {
                     buffer.append(str);
                 }
-
                 receiveMsg = buffer.toString();
-                System.out.println(receiveMsg);
+                JSONObject json = (JSONObject) jsonParser.parse(receiveMsg);
+
+                // success이면 true 실패면 false 반환
+                return json.get("result").equals("success");
             } else {
-                Log.i("통신 결과", conn.getResponseCode()+"에러");
+                Log.i("통신 결과", conn.getResponseCode()+"에러" + "\n"+receiveMsg);
             }
-        } catch (IOException e) {
+        } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return receiveMsg;
+        return false;
     }
 
 }

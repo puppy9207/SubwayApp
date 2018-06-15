@@ -75,19 +75,14 @@ public class SignUp extends Fragment
         ClientVO vo = new ClientVO(et[0].getText().toString(), et[1].getText().toString(),et[2].getText().toString(),
                                    et[3].getText().toString(),et[5].getText().toString(),Integer.parseInt(et[4].getText().toString()));
 
-//        try {
-//            String output = new TaskPost("/api/joinClient.json",mapper.writeValueAsString(vo))
-//                                .execute().get();
-//            Map result = mapper.readValue(result,"");
-//            if(result.equals("success"))
-//                return true;
-//            else
-//                return false;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            return false;
-//        }
-        return true;
+        try {
+            boolean output = new TaskPost("/api/joinClient.json",mapper.writeValueAsString(vo))
+                                .execute().get();
+            return output;
+        }catch(Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -105,48 +100,43 @@ public class SignUp extends Fragment
         btn.setOnClickListener(v ->
         {
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-            dialog.setTitle("회원가입").setMessage("가입 하시겠습니까?").setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    /*
-                    회원가입 검증
+            dialog.setTitle("회원가입").setPositiveButton("확인", (dialog12, which) ->
+            {
+                /*회원가입 검증*/
 
-                    */
-                    //입력 여부검증
+                //입력 여부검증
+                /*
+                    if(editID.getText().toString().isEmpty()||editTel.getText().toString().isEmpty()||
+                        editPW.getText().toString().isEmpty()||editName.getText().toString().isEmpty()||
+                            editAge.getText().toString().isEmpty()||editAddr.getText().toString().isEmpty())
+                 */
 
-                    /*
-                        if(editID.getText().toString().isEmpty()||editTel.getText().toString().isEmpty()||
-                            editPW.getText().toString().isEmpty()||editName.getText().toString().isEmpty()||
-                                editAge.getText().toString().isEmpty()||editAddr.getText().toString().isEmpty())
-                     */
-
-                    if (Arrays.stream(et)
-                              .anyMatch(i -> i.getText().toString().isEmpty()))
-                    {
-                        Toast.makeText(getActivity(), "입력되지 않은 값이 있습니다", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //나이 숫자 여부 판단
-                        if (isStringDouble(et[4].getText().toString())) {
-                            if (!et[1].getText().toString().equals(et[6].getText().toString())) {
-                                Toast.makeText(getActivity(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-                                et[6].requestFocus();
-                            } else {
-                                //체크박스 체크여부 판단
-                                if (checkBox.isChecked()) {
-                                    //비밀번호 정규화
-                                    if (validatePassword(et[1].getText().toString())) {
-
-                                    } else {
-                                        Toast.makeText(getActivity(), "비밀번호는 정규표현식을 제외한 4자리에서 16자리만 가능합니다.", Toast.LENGTH_SHORT).show();
-                                    }
-                                } else {
-                                    Toast.makeText(getActivity(), "개인정보 동의 여부를 체크해야 가입이 가능합니다.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
+                if (Arrays.stream(et)
+                          .anyMatch(i -> i.getText().toString().isEmpty()))
+                {
+                    Toast.makeText(getActivity(), "입력되지 않은 값이 있습니다", Toast.LENGTH_SHORT).show();
+                } else {
+                    //나이 숫자 여부 판단
+                    if (isStringDouble(et[4].getText().toString())) {
+                        if (!et[1].getText().toString().equals(et[6].getText().toString())) {
+                            Toast.makeText(getActivity(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                            et[6].requestFocus();
                         } else {
-                            Toast.makeText(getActivity(), "나이에는 숫자만 입력해주세요", Toast.LENGTH_SHORT).show();
-                            et[4].requestFocus();
+                            //체크박스 체크여부 판단
+                            if (checkBox.isChecked()) {
+                                //비밀번호 정규화
+                                if (validatePassword(et[1].getText().toString())) {
+
+                                } else {
+                                    Toast.makeText(getActivity(), "비밀번호는 정규표현식을 제외한 4자리에서 16자리만 가능합니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "개인정보 동의 여부를 체크해야 가입이 가능합니다.", Toast.LENGTH_SHORT).show();
+                            }
                         }
+                    } else {
+                        Toast.makeText(getActivity(), "나이에는 숫자만 입력해주세요", Toast.LENGTH_SHORT).show();
+                        et[4].requestFocus();
                     }
                 }
             }).setNegativeButton("취소", (dialog1, which)
