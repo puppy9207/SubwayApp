@@ -1,18 +1,19 @@
 package com.example.puppy.subwayapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.LinearLayout;
 
 public class MainActivity extends AppCompatActivity {
 
     Login    login;
     HomeMenu  home;
     MyMenu   myMenu;
-    Map map;
     SignUp signUp;
     FragmentManager manager;
 
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         login = (Login)manager.findFragmentById(R.id.mainF);
         home = new HomeMenu();
         myMenu = new MyMenu();
-        map = new Map();
         signUp = new SignUp();
 
     }
@@ -47,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
             case "MyMenu":
                 manager.beginTransaction()
                         .replace(R.id.container, myMenu).commit();
-                break;
-            case "Map":
-                manager.beginTransaction()
-                        .replace(R.id.container, map).commit();
                 break;
             case "SignUp":
                 manager.beginTransaction()

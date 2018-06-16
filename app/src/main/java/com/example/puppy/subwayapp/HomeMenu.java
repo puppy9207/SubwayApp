@@ -2,6 +2,7 @@ package com.example.puppy.subwayapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -50,8 +51,8 @@ public class HomeMenu extends Fragment {
 
         // test
         map.setOnClickListener(v -> {
-            MainActivity activity = (MainActivity)getActivity();
-            activity.onFragmentChanged("Map");
+            Intent intent = new Intent(getActivity(),Map.class);
+            startActivity(intent);
         });
         return root;
     }
