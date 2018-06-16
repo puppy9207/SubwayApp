@@ -25,7 +25,7 @@ public class CustomAdd extends Fragment {
     String kiName="",bName="",cName="",sName="",vName="",aName="";
 
     GridView addList;
-    TextView addTv,resultTV;
+    TextView addTv;
     Button btnReset1,btnSend;
 
     public void kShowText(String input, String kPrice){
@@ -75,13 +75,23 @@ public class CustomAdd extends Fragment {
         btnSend = (Button)root.findViewById(R.id.btnSend);
         kiPrice = kiPrice;
         addTv.setText(aName);
+
         addList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0) {
-                    addTv.setText(" " + addName[position] + addTv.getText()); // 디비에 보낼 상품 이름
-                    aPrice = addPrice[position] + aPrice;
-                    aName = addTv.getText().toString();
+                    if(aName.equals("없음")||aName.equals("")){
+                        addTv.setText("");
+                        addTv.setText(" " + addName[position] + addTv.getText()); // 디비에 보낼 상품 이름
+                        aPrice = addPrice[position] + aPrice;
+                        aName = addTv.getText().toString();
+                    }else{
+                        addTv.setText(" " + addName[position] + addTv.getText()); // 디비에 보낼 상품 이름
+                        aPrice = addPrice[position] + aPrice;
+                        aName = addTv.getText().toString();
+                    }
+
+
                 }else{
                     addTv.setText("없음");
                     aName = addTv.getText().toString();
@@ -95,7 +105,6 @@ public class CustomAdd extends Fragment {
             public void onClick(View v) {
                 addTv.setText("");
                 aPrice = 0;
-                resultTV.setText("");
             }
         });
 

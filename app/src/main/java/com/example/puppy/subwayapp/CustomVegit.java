@@ -20,7 +20,7 @@ public class CustomVegit extends Fragment {
     GridView vegitList;
     TextView vegitTv;
     Button btnReset;
-    String vName;
+    String vName="";
 
     int vegitImg[] = {R.drawable.notsel,R.drawable.v1,R.drawable.v2,R.drawable.v3,R.drawable.v4,R.drawable.v5,R.drawable.v6,R.drawable.v7,R.drawable.v8,R.drawable.v9};
     String vegitName [] = {null,"양상추","토마토","오이","피망","양파","피클","올리브","할라피뇨","아보카도"};
@@ -52,12 +52,20 @@ public class CustomVegit extends Fragment {
         vegitTv = (TextView)root.findViewById(R.id.vegitTv);
         vegitList.setAdapter(vegitAdapter);
         vegitTv.setText(vName);
+
         vegitList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0) {
-                    vegitTv.setText(" " + vegitName[position] + vegitTv.getText());
-                    vName = vegitTv.getText().toString();
+                    if(vName.equals("없음")||vName.equals("")){
+                        vegitTv.setText("");
+                        vegitTv.setText(" " + vegitName[position] + vegitTv.getText());
+                        vName = vegitTv.getText().toString();
+                    }
+                    else{
+                        vegitTv.setText(" " + vegitName[position] + vegitTv.getText());
+                        vName = vegitTv.getText().toString();
+                    }
                 }else{
                     vegitTv.setText("없음");
                     vName = vegitTv.getText().toString();

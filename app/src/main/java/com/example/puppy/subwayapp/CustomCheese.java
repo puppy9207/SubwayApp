@@ -19,7 +19,7 @@ public class CustomCheese extends Fragment {
 
     GridView cheeseList;
     TextView cheeseTv;
-    String cName;
+    String cName="";
     int cheeseImg[] = {R.drawable.notsel,R.drawable.c1,R.drawable.c2};
     String cheeseName[] = {null,"아메리칸 치즈","슈레드 치즈"};
 
@@ -54,8 +54,15 @@ public class CustomCheese extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0){
-                    cheeseTv.setText(cheeseName[position]);
-                    cName = cheeseTv.getText().toString();
+                    if(cName.equals("없음")||cName.equals("")){
+                        cheeseTv.setText("");
+                        cheeseTv.setText(cheeseName[position]);
+                        cName = cheeseTv.getText().toString();
+                    }else{
+                        cheeseTv.setText(cheeseName[position]);
+                        cName = cheeseTv.getText().toString();
+                    }
+
                 }
                 else{
                     cheeseTv.setText("없음");
