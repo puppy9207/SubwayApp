@@ -19,12 +19,20 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CustomActivity extends AppCompatActivity implements CustomKind.CustomKindValue,CustomAdd.CustomAddValue{
+public class CustomActivity extends AppCompatActivity implements CustomKind.TextSendCall,CustomBread.TextSendCall,
+        CustomCheese.TextSendCall,CustomSource.TextSendCall,CustomVegit.TextSendCall{
 
     ViewPager vp;
     Button btn1, btn2, btn3, btn4, btn5, btn6;
-    int kPrice, aPrice;
+    CustomAdd customAdd;
+    CustomVegit customVegit;
+    CustomSource customSource;
+    CustomCheese customCheese;
+    CustomBread customBread;
+    CustomKind customKind;
 
+    public CustomActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,12 @@ public class CustomActivity extends AppCompatActivity implements CustomKind.Cust
         btn4 = (Button)findViewById(R.id.btn4);
         btn5 = (Button)findViewById(R.id.btn5);
         btn6 = (Button)findViewById(R.id.btn6);
+        customAdd = new CustomAdd();
+        customBread = new CustomBread();
+        customCheese = new CustomCheese();
+        customKind = new CustomKind();
+        customSource = new CustomSource();
+        customVegit = new CustomVegit();
 
         vp.setAdapter(new pagerAdapter(getSupportFragmentManager()));
         vp.setCurrentItem(0);
@@ -67,13 +81,27 @@ public class CustomActivity extends AppCompatActivity implements CustomKind.Cust
     };
 
     @Override
-    public void kindValue(String kind, int kPrice) {
-
+    public void bPrintText(String bInput) {
+        customAdd.bShowText(bInput);
+    }
+    @Override
+    public void printText(String kInput, String kPrice) {
+        customAdd.kShowText(kInput,kPrice);
     }
 
     @Override
-    public void addValue(String add, int aPrice) {
+    public void cPrintText(String cInput) {
+        customAdd.cShowText(cInput);
+    }
 
+    @Override
+    public void sPrintText(String sInput) {
+        customAdd.sShowText(sInput);
+    }
+
+    @Override
+    public void vPrintText(String vInput) {
+        customAdd.vShowText(vInput);
     }
 
     private class pagerAdapter extends FragmentStatePagerAdapter
@@ -88,17 +116,17 @@ public class CustomActivity extends AppCompatActivity implements CustomKind.Cust
             switch(position)
             {
                 case 0:
-                    return new CustomKind();
+                    return customKind;
                 case 1:
-                    return new CustomBread();
+                    return customBread;
                 case 2:
-                    return new CustomSource();
+                    return customSource;
                 case 3:
-                    return new CustomVegit();
+                    return customVegit;
                 case 4:
-                    return new CustomCheese();
+                    return customCheese;
                 case 5:
-                    return new CustomAdd();
+                    return customAdd;
                 default:
                     return null;
             }
@@ -109,6 +137,8 @@ public class CustomActivity extends AppCompatActivity implements CustomKind.Cust
             return 6;
         }
     }
+
+
 
 
 

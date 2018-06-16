@@ -1,6 +1,7 @@
 package com.example.puppy.subwayapp;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -18,9 +19,23 @@ public class CustomBread extends Fragment {
 
     GridView breadList;
     TextView breadTv;
+    String bName;
 
     int breadImg[] = {R.drawable.b1,R.drawable.b2,R.drawable.b3,R.drawable.b4,R.drawable.b5,R.drawable.b6};
     String breadName [] ={"허니 오트","하티","위트","파마산 오레가노","화이트","플랫 브레드"};
+
+    public static interface TextSendCall{
+        public void bPrintText(String bInput);
+    }
+
+    public TextSendCall callback;
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof TextSendCall){
+            callback = (TextSendCall)context;
+        }
+    }
     public CustomBread() {
         // Required empty public constructor
     }
@@ -34,10 +49,13 @@ public class CustomBread extends Fragment {
         MyAdapter breadAdapter = new MyAdapter(getContext(),R.layout.row,breadImg);
         breadTv = (TextView)root.findViewById(R.id.breadTv);
         breadList.setAdapter(breadAdapter);
+        breadTv.setText(bName);
         breadList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 breadTv.setText(breadName[position]);
+                bName = breadTv.getText().toString();
+                callback.bPrintText(breadTv.getText().toString());
             }
         });
         return root;

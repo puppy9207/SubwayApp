@@ -8,11 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 
@@ -21,17 +17,16 @@ import android.widget.TextView;
  */
 public class CustomKind extends Fragment {
 
-    public interface CustomKindValue{
-        void kindValue(String kind, int price);
+    public static interface TextSendCall{
+        public void printText(String kInput,String kPrice);
     }
 
-    private CustomKindValue mCustomKindValue;
-
+    public TextSendCall callback;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (getActivity()!=null && getActivity() instanceof CustomKindValue){
-            mCustomKindValue = (CustomKindValue)getActivity();
+        if(context instanceof TextSendCall){
+            callback = (TextSendCall)context;
         }
     }
 
@@ -49,12 +44,13 @@ public class CustomKind extends Fragment {
             "터키 베이컨 아보카도", "베지", "웨스턴 에그 & 치즈"
     };
     int kindPrice[] = {2900,2900,5100,5900,5600,
-            4300,4700,5100,4900,5900,5900,5900,5900,5600,
+            4300,4700,5100,4900,5900,5900,5900,5900,600,
             6300,6300,3900,5600,5900,4800,5100,5600,
             6300,3900,2900
     };
 
-    int kPrice;
+    String kPrice;
+    String mkind;
     public CustomKind() {
         // Required empty public constructor
     }
@@ -70,19 +66,16 @@ public class CustomKind extends Fragment {
         MyAdapter gridAdapter = new MyAdapter(getContext(),R.layout.row,kindImg);
         tv = (TextView)root.findViewById(R.id.kindTv);
         kindList.setAdapter(gridAdapter);
+        tv.setText(mkind);
         kindList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 tv.setText(kImgName[position]); // 디비에 보낼 상품 이름
-                kPrice = kindPrice[position];
+                kPrice = Integer.toString(kindPrice[position]);
+                mkind = tv.getText().toString();
+                callback.printText(mkind,kPrice);
             }
         });
-        String mkind = tv.getText().toString();
-        if (mCustomKindValue!=null){
-            mCustomKindValue.kindValue(mkind,kPrice);
-        }
-
-
         return root;
     }
 
