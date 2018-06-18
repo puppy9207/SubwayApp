@@ -1,14 +1,11 @@
 package com.example.puppy.subwayapp;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,14 +14,6 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.puppy.subwayapp.task.TaskPost;
-import com.example.puppy.subwayapp.vo.CustomVO;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.util.Optional;
-import java.util.concurrent.ExecutionException;
 
 
 /**
@@ -120,79 +109,30 @@ public class CustomAdd extends Fragment {
             }
         });
 
-        btnSend.setOnClickListener(v ->
-        {
-            resultPrice = aPrice + kiPrice;
-            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-            if(!kiName.isEmpty()&&!bName.isEmpty()&&!cName.isEmpty()&&!sName.isEmpty()&&
-                    !vName.isEmpty()&&!aName.isEmpty())
-            {
-                builder.setMessage("샌드위치 종류는 " + kiName + " 빵은 " + bName + " 치즈는 " + cName + " 소스는 " + sName +
-                        " 뺄 야채는 " + vName  + " 추가상품 " + aName + " 그리고 가격은 " + resultPrice)
-                        .setPositiveButton("확인", (dialog, which) ->
-                        {
-                            //여기서 모든 정보를 디비에 보내고 마이메뉴로 돌아간다. + 작성자 + 커스텀 이름
-                            Activity parent = getActivity();
-                            String JWT;
-                            SharedPreferences  sp;
-
-                            // 로그인 여부 체크
-                            sp = Optional.ofNullable(parent.getSharedPreferences("login",Context.MODE_PRIVATE))
-                                         .orElse(null);
-
-                            if(sp != null)  // 로그인 되어있는 경우
-                            {
-                              // JWT 가져오기 및 VO 생성, 그리고 DB에 등록
-                              JWT = sp.getString("JWT","");
-                              CustomVO vo = new CustomVO(kiName,bName,cName,sName,vName,aName,resultPrice,JWT);
-
-                              // 서버에 데이터 전송
-                              addCustom(vo);
-                            }else{
-                                Toast.makeText(getActivity(),"로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
-                                Log.e("로그인 안되있음","안되어있음 로그인");
-                                return;
-                            }
-                        }).setNegativeButton("취소", null).setTitle("등록하시겠습니까?").show();
-            }
-            else{
-                Toast.makeText(getActivity(),"하나는 무조건 고르셔야 합니다",Toast.LENGTH_SHORT).show();
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resultPrice = aPrice+kiPrice;
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                if(!kiName.isEmpty()&&!bName.isEmpty()&&!cName.isEmpty()&&!sName.isEmpty()&&
+                        !vName.isEmpty()&&!aName.isEmpty())
+                {
+                    builder.setMessage("샌드위치 종류는 " + kiName + " 빵은 " + bName + " 치즈는 " + cName + " 소스는 " + sName +
+                            " 뺄 야채는 " + vName  + " 추가상품 " + aName + " 그리고 가격은 " + resultPrice)
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //여기서 모든 정보를 디비에 보내고 마이메뉴로 돌아간다.
+                                }
+                            }).setNegativeButton("취소", null).setTitle("등록하시겠습니까?").show();
+                }
+                else{
+                    Toast.makeText(getActivity(),"하나는 무조건 고르셔야 합니다",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         return root;
     }
 
-
-    /**
-     * 서버에 Custom    정보를 등록하는 메서드
-     * @param  vo      서버에 보낼 VO
-     *
-     * void 서버 DB에 insert 성공시 성공알람, 실패시 실패 알람
-     */
-    private void addCustom(CustomVO vo)
-    {
-        ObjectMapper om = new ObjectMapper();
-        TaskPost task;
-        String json;
-        Boolean result;
-        try
-        {
-            json = om.writeValueAsString(vo);
-            Log.i("보낼 JSON",json);
-            task = new TaskPost( "/api/addCustom.json",json);
-            result = task.execute().get();
-
-            if(result)
-            {
-                Toast.makeText(getActivity(),"등록 성공",Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(getActivity(),"등록 실패",Toast.LENGTH_SHORT).show();
-            }
-
-        } catch (IOException | InterruptedException| ExecutionException e) {
-            e.printStackTrace();
-            Log.e("오브젝트 매핑 에러",e.getMessage() + "\n" + e.getClass().getName());
-        }
-    }
 }
