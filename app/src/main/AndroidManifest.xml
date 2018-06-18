@@ -42,7 +42,6 @@
 
         <activity android:name=".CustomActivity" />
         <activity android:name=".Map" />
-        <activity android:name=".MyList"></activity>
     </application>
 
 </manifest>
