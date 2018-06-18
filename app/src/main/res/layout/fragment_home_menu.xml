@@ -61,7 +61,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="40dp"
                 android:layout_weight="1"
-                android:text="Other's Reicipe"
+                android:text="내 정보"
                 android:textColor="@android:color/background_light"
                 android:textSize="24sp" />
         </LinearLayout>
