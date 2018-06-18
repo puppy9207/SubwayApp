@@ -66,9 +66,6 @@ public class ClientVO
 	}
 
 
-
-
-
 	public String getTel() {
 		return tel;
 	}

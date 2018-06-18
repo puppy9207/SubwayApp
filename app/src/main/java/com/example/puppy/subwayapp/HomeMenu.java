@@ -21,7 +21,8 @@ public class HomeMenu extends Fragment {
     LinearLayout map;
     LinearLayout myMenuLayout;
 
-    public HomeMenu() {
+    public HomeMenu()
+    {
         // Required empty public constructor
     }
 

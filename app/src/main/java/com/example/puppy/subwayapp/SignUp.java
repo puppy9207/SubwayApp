@@ -59,6 +59,10 @@ public class SignUp extends Fragment
         }
     }
 
+    /**
+     * 데이터를 서버로 보내서 DB에 insert 하는 메서드
+     * @return 성공시 true, 실패시 false
+     */
     public boolean sendData()
     {
         ObjectMapper mapper = new ObjectMapper();
