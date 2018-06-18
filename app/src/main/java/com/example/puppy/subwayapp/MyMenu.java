@@ -45,11 +45,10 @@ public class MyMenu extends Fragment {
                 R.drawable.k14,R.drawable.k15,R.drawable.k16,R.drawable.k17,R.drawable.k18,R.drawable.k19,R.drawable.k20,
                 R.drawable.k21,R.drawable.k22,R.drawable.k23,R.drawable.k24,R.drawable.k25
         };
-        //이상 위에 두개는 건들지 말것 한번 돌려보면 감이 잡힐거임
 
 
         String[] title = {"id1","id2","id3","id4","id5"};//DB에서 가져온 customId
-        String[] kind = {"스파이시 이탈리안 아보카도","스파이시 이탈리안 아보카도","써브웨이 클럽","터키","로스트 비프"};//Custom에 저장된 종류 문자열 아마 name으로 되어있던거같은데
+        String[] kind = {"스파이시 이탈리안 아보카도","스파이시 이탈리안 아보카도","써브웨이 클럽","터키","로스트 비프"};//Custom\d
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_menu, container, false);
         btn4 = root.findViewById(R.id.button4);

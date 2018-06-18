@@ -5,15 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity implements Notice.TextSendCall{
+public class MainActivity extends AppCompatActivity {
 
     Login    login;
     HomeMenu  home;
@@ -36,8 +32,7 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
         myMenu = new MyMenu();
         signUp = new SignUp();
         notice = new Notice();
-        noticeContext = new NoticeContext();
-
+        noticeContext= new NoticeContext();
     }
 
     public void onFragmentChanged(String command)
@@ -71,28 +66,4 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        super.onCreateOptionsMenu(menu);
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()){
-            case R.id.logout:
-                //로그아웃 로직 넣으면됨
-                break;
-
-        }
-        return true;
-    }
-
-    @Override
-    public void noticePrintText(String title, String context, String author) {
-        noticeContext.showText(title,context,author);
-    }
 }
