@@ -3,6 +3,7 @@ package com.example.puppy.subwayapp;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -118,7 +119,12 @@ public class CustomAdd extends Fragment {
                 {
                     builder.setMessage("샌드위치 종류는 " + kiName + " 빵은 " + bName + " 치즈는 " + cName + " 소스는 " + sName +
                             " 뺄 야채는 " + vName  + " 추가상품 " + aName + " 그리고 가격은 " + resultPrice)
-                            .setPositiveButton("확인", null).setNegativeButton("취소", null).setTitle("등록하시겠습니까?").show();
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    //여기서 모든 정보를 디비에 보내고 마이메뉴로 돌아간다.
+                                }
+                            }).setNegativeButton("취소", null).setTitle("등록하시겠습니까?").show();
                 }
                 else{
                     Toast.makeText(getActivity(),"하나는 무조건 고르셔야 합니다",Toast.LENGTH_SHORT).show();

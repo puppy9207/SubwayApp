@@ -17,13 +17,12 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/listView"
+            <fragment
+                android:id="@+id/menulistFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" >
+                android:layout_height="match_parent">
 
-            </ListView>
+            </fragment>
         </LinearLayout>
 
         <LinearLayout
