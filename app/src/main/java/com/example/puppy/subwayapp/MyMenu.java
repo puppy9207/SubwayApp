@@ -2,6 +2,7 @@ package com.example.puppy.subwayapp;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,6 +43,21 @@ public class MyMenu extends Fragment {
         // Required empty public constructor
     }
 
+    public static interface TextSendCall{
+        public void noticePrintText(CustomVO vo,int position);
+    }
+
+    public TextSendCall callback;
+
+    @Override
+    public void onAttach(Context context)
+    {
+        super.onAttach(context);
+        if(context instanceof TextSendCall)
+        {
+            callback = (TextSendCall)context;
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,8 +78,6 @@ public class MyMenu extends Fragment {
         };
 
 
-        int[] title = {1,2,3,4,5};//DB에서 가져온 customId 이거 디비에서 받아오면 됨
-        String[] kind = {"스파이시 이탈리안 아보카도","스파이시 이탈리안 아보카도","써브웨이 클럽","터키","로스트 비프"};//이거 디비에서 받아오고
 
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_menu, container, false);
@@ -74,18 +88,22 @@ public class MyMenu extends Fragment {
         btn4   = (Button)root.findViewById(R.id.button4);
         activity = getActivity();
 
-        List<CustomVO> myCustomList = getMyMenu();          //데이터를 가져온다.
+        List<CustomVO> myCustomList = getMyMenu();
 
-        int a[] = new int[title.length];
-        for (int i=0;i<title.length;i++){
-            for(int j=0;j<kind.length;j++){
-                for(int w=0;w<kImgName.length;w++){
-                    if (kind[j].equals(kImgName[w])){
+
+
+        //데이터를 가져온다.
+
+        int a[] = new int[myCustomList.size()];
+        for (int i=0;i<myCustomList.size();i++){
+            for(int j=0;j<myCustomList.size();j++){
+                for(int w=0;w<kImgName.length;w++){//삼중 나생문!!
+                    if (myCustomList.get(j).getName().equals(kImgName[w])){
                         a[j]=w; //여기에서 문자열 비교해서 포지션값 넘겨주는거임
                     }
                 }
             }
-            adapter.addItem(new CustomVO(title[i],kind[i]),kindImg[a[i]]);
+            adapter.addItem(new CustomVO(myCustomList.get(i).getCustom_id(),myCustomList.get(i).getName()),kindImg[a[i]]);
         }
 
         myList.setAdapter(adapter);
@@ -93,6 +111,11 @@ public class MyMenu extends Fragment {
         {
             //삭제 로직
             return false;
+        });
+        myList.setOnItemClickListener((parent, view, position, id) -> {
+            callback.noticePrintText(myCustomList.get(position),a[position]);
+            MainActivity activity = (MainActivity)getActivity();
+            activity.onFragmentChanged("CustomView");
         });
 
         btn4.setOnClickListener(v ->

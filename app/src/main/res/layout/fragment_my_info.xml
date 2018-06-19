@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A4C226"
     android:orientation="vertical"
     tools:context="com.example.puppy.subwayapp.MyInfo">
 
@@ -17,10 +18,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
+            android:background="#48690D"
             android:gravity="center"
             android:text="나의 정보"
-            android:textColor="@color/black"
+            android:textColor="@color/colorWhite"
             android:textSize="32sp" />
 
     </LinearLayout>
@@ -28,16 +32,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#48690D"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView18"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="ID"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -45,23 +53,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#739C06"
+            android:padding="5dp"
             android:text="ID"
-            android:textSize="27sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#48690D"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView19"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="이름"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:layout_marginLeft="10dp"
+            android:text="이름    "
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -69,23 +84,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#739C06"
+            android:padding="5dp"
             android:text="이름"
-            android:textSize="27sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#48690D"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView20"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="주소"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:layout_marginLeft="10dp"
+            android:text="주소    "
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -93,23 +115,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#739C06"
+            android:padding="5dp"
             android:text="주소"
-            android:textSize="27sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#48690D"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="나이"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -117,23 +146,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#739C06"
+            android:padding="5dp"
             android:text="나이"
-            android:textSize="27sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#48690D"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView22"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="전화번호"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -141,23 +177,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#739C06"
+            android:padding="5dp"
             android:text="전화번호"
-            android:textSize="27sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="#48690D"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/textView23"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:text="포인트"
-            android:textColor="#000000"
-            android:textSize="30sp"
+            android:textColor="@color/colorWhite"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -165,8 +208,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
+            android:background="#739C06"
+            android:padding="5dp"
             android:text="포인트"
-            android:textSize="27sp" />
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </LinearLayout>

@@ -7,17 +7,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.puppy.subwayapp.vo.BbsVO;
+import com.example.puppy.subwayapp.vo.CustomVO;
 
-public class MainActivity extends AppCompatActivity implements Notice.TextSendCall{
+public class MainActivity extends AppCompatActivity implements Notice.TextSendCall, MyMenu.TextSendCall{
 
     Login    login;
     HomeMenu  home;
@@ -25,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
     SignUp signUp;
     Notice notice;
     NoticeContext noticeContext;
+    CustomView customView;
     MyInfo myInfo;
+    BasicMenu basicMenu;
     FragmentManager manager;
 
     @Override
@@ -33,7 +38,12 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.sublogo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         manager = getSupportFragmentManager();
         login = (Login)manager.findFragmentById(R.id.mainF);
@@ -43,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
         notice = new Notice();
         myInfo = new MyInfo();
         noticeContext= new NoticeContext();
+        customView = new CustomView();
+        basicMenu = new BasicMenu();
     }
 
     public void onFragmentChanged(String command)
@@ -76,6 +88,14 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
             case "MyInfo":
                 manager.beginTransaction()
                         .replace(R.id.container, myInfo).addToBackStack(null).commit();
+                break;
+            case "CustomView":
+                manager.beginTransaction()
+                        .replace(R.id.container, customView).addToBackStack(null).commit();
+                break;
+            case "BasicMenu":
+                manager.beginTransaction()
+                        .replace(R.id.container, basicMenu).addToBackStack(null).commit();
                 break;
         }
     }
@@ -156,5 +176,10 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
         }else{  // 값이 있을떄
             return true;
         }
+    }
+
+    @Override
+    public void noticePrintText(CustomVO vo,int position) {
+        customView.setInfo(vo,position);
     }
 }

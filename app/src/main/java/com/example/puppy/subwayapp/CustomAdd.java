@@ -149,6 +149,8 @@ public class CustomAdd extends Fragment {
 
                                     // 서버에 데이터 전송
                                     addCustom(vo);
+                                    CustomActivity activity = (CustomActivity)getActivity();
+                                    activity.finish();
                                 }else{
                                     Toast.makeText(getActivity(),"로그인이 되어있지 않습니다",Toast.LENGTH_SHORT).show();
                                     Log.e("로그인 안되있음","안되어있음 로그인");

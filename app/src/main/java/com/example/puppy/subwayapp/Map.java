@@ -41,12 +41,19 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     Double latitude = 0.0;
     Double longitude = 0.0;
     double subLat[] = {37.395788, 37.414436, 37.401243, 37.446556, 37.455646, 37.494093
-            , 37.488071, 37.505184, 37.502671, 37.488825, 37.344113, 37.309989, 37.309021};
+            , 37.488071, 37.505184, 37.502671, 37.488825, 37.344113, 37.309989, 37.309021,
+            37.484351,37.480131,37.540966, 37.518518, 37.481785, 37.553837, 37.553457,
+            37.576325, 37.402084, 37.382625,37.394534
+    };
     double subLong[] = {126.652274, 126.676867, 126.723928, 126.702535, 126.719913, 126.723218,
             126.752551, 126.752424, 126.774348, 126.779543, 126.736697, 126.829052, 126.851824
+            ,126.899121, 126.880974,126.840624, 126.905358, 126.996989, 126.923625, 126.973385,
+            126.971482, 126.922413, 126.959863, 126.962866
     };
     String subwayName[] = {"송도점","연수점","인천논현역점","구월동로데오점","모래내시장역점","부평중앙점","부천송내역점",
-    "부천상동점","부천중동점","부천역점","정왕점","안산고잔점","한대앞역점"};
+    "부천상동점","부천중동점","부천역점","정왕점","안산고잔점","한대앞역점","구로디지털점"
+    ,"구로디지털단지점","화곡역점","영등포점","방배역점","홍대점","서울역동자점",
+    "경복궁점","안양점","평촌학원가점","안양평촌점"};
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -94,6 +101,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         boxMap = (RelativeLayout) findViewById(R.id.boxMap);
 
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setLogo(R.drawable.sublogo);
+        actionBar.setDisplayUseLogoEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
         //LocationManager
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 

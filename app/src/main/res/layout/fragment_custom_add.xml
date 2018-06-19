@@ -12,12 +12,15 @@
 
         <TextView
             android:id="@+id/textView13"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:background="#739C06"
             android:gravity="center"
+            android:padding="10dp"
             android:text="추가 할 토핑 / 사이드 메뉴"
-            android:textColor="@color/colorAccent"
+            android:textColor="@android:color/white"
             android:textSize="22sp" />
 
         <GridView
@@ -41,6 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="@color/black"
+            android:textColorHighlight="@color/black"
             android:textSize="18sp" />
 
         <LinearLayout
@@ -53,14 +57,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="리셋" />
+                android:background="@drawable/button"
+                android:text="리셋"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnSend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="전송하기" />
+                android:background="@drawable/button"
+                android:text="전송하기"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
