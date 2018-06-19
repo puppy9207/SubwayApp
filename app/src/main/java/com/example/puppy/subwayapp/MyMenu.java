@@ -17,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.puppy.subwayapp.task.TaskGet;
+import com.example.puppy.subwayapp.vo.BbsVO;
 import com.example.puppy.subwayapp.vo.ClientVO;
 import com.example.puppy.subwayapp.vo.CustomVO;
 import com.example.puppy.subwayapp.vo.MyListVO;
@@ -71,6 +72,9 @@ public class MyMenu extends Fragment {
 
         myList = (ListView)root.findViewById(R.id.myList);
         btn4   = (Button)root.findViewById(R.id.button4);
+        activity = getActivity();
+
+        List<CustomVO> myCustomList = getMyMenu();          //데이터를 가져온다.
 
         int a[] = new int[title.length];
         for (int i=0;i<title.length;i++){
@@ -83,15 +87,16 @@ public class MyMenu extends Fragment {
             }
             adapter.addItem(new CustomVO(title[i],kind[i]),kindImg[a[i]]);
         }
+
         myList.setAdapter(adapter);
-        myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //삭제 로직
-                return false;
-            }
+        myList.setOnItemLongClickListener((parent, view, position, id) ->
+        {
+            //삭제 로직
+            return false;
         });
-        btn4.setOnClickListener(v -> {
+
+        btn4.setOnClickListener(v ->
+        {
             Intent intent=new Intent(getActivity(),CustomActivity.class);
             startActivity(intent);
         });
@@ -165,6 +170,7 @@ public class MyMenu extends Fragment {
         try{
             setting = activity.getSharedPreferences("login",0);
         }catch(NullPointerException e){
+            e.printStackTrace();
             Log.e("로그인 에러", "로그인 안되있음 - 익셉션 핸들링 완료;");
             setting = null;
             return false;
@@ -188,12 +194,11 @@ public class MyMenu extends Fragment {
         TaskGet task = new TaskGet("api/selectCustom.json","?jwt="+jwt);
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory typeFactory = mapper.getTypeFactory();
-
+        List<CustomVO> list;
         try{
             String result = task.execute().get();
-            mapper.readValue(result,CustomVO.class);
-
-            return null;
+            list =  mapper.readValue(result,typeFactory.constructCollectionType(ArrayList.class, CustomVO.class));
+            return list;
         }catch (Exception e){
             e.printStackTrace();
         }
