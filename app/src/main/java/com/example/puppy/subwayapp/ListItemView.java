@@ -28,7 +28,9 @@ public class ListItemView extends LinearLayout {
     private void init(Context context) {
         LayoutInflater inflater = (LayoutInflater)
                 context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         inflater.inflate(R.layout.list_notice,this,true);
+
         title = (TextView)findViewById(R.id.listTitle);
         author = (TextView)findViewById(R.id.listAuthor);
     }

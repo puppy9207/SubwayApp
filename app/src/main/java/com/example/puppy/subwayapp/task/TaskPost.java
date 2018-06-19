@@ -72,22 +72,40 @@ public class TaskPost extends AsyncTask<String, String, Boolean>
                 }
 
             } else {
-                InputStream is = conn.getErrorStream();
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                byte[] byteBuffer = new byte[1024];
-                byte[] byteData = null;
-                int nLength = 0;
-                while((nLength = is.read(byteBuffer, 0, byteBuffer.length)) != -1) {
-                    baos.write(byteBuffer, 0, nLength);
-                }
-                byteData = baos.toByteArray();
-                String response = new String(byteData);
-                Log.e("통신에러","response = " + response);
-                Log.i("통신 결과", conn.getResponseCode()+"에러" + "\n");
+                printErrorMessage(conn);   // 에러메세지 파싱해서 출력
+                Log.i("통신 결과", conn.getResponseCode() + "\n");
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
         return false;
     }
+
+    /**
+     * 에러 메시지의 InputStream을 받아와서 콘솔에 출력한다.
+     * @param conn 넘겨받을 HttpURLConnection 인스턴스
+     */
+    private void printErrorMessage(HttpURLConnection conn)
+    {
+        try {
+            InputStream error = conn.getErrorStream();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] byteBuffer = new byte[1024];
+            byte[] byteData = null;
+            int nLength = 0;
+
+            while((nLength = error.read(byteBuffer, 0, byteBuffer.length)) != -1)
+            {
+                baos.write(byteBuffer, 0, nLength);
+            }
+
+            byteData = baos.toByteArray();
+            String response = new String(byteData);
+            Log.e("에러 메시지","response = " + response);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+

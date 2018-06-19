@@ -75,8 +75,9 @@ public class MyMenu extends Fragment {
         return root;
     }
 
-    public class MyMenuAdapter extends BaseAdapter{
-        ArrayList<MyListVO> items = new ArrayList<MyListVO>();
+    public class MyMenuAdapter extends BaseAdapter
+    {
+        ArrayList<MyListVO> items = new ArrayList<>();
 
         @Override
         public int getCount() {

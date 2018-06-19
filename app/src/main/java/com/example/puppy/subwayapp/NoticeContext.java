@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.puppy.subwayapp.vo.BbsVO;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,15 +25,10 @@ public class NoticeContext extends Fragment {
         // Required empty public constructor
     }
 
-    public void showText(String gTitle, String gContext, String gAuthor){
-        title = gTitle;
-        contents = gContext;
-        author = gAuthor;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         ViewGroup root = (ViewGroup)inflater.inflate(R.layout.fragment_notice_context, container, false);
         noticeContext = (TextView)root.findViewById(R.id.noticeContext);
         noticeTitle = (TextView)root.findViewById(R.id.noticeTitle);
@@ -44,4 +41,15 @@ public class NoticeContext extends Fragment {
         return root;
     }
 
+
+    /**
+     * 공지사항 VO를 메인 엑티비티에서 입력받아서 설정한다.
+     * @param vo     공지사항 VO
+     */
+    public void setInfo(BbsVO vo)
+    {
+        this.title    = vo.getTitle();
+        this.contents = vo.getContent();
+        this.author   = vo.getUser_id();
+    }
 }

@@ -1,13 +1,16 @@
 package com.example.puppy.subwayapp.vo;
 
 /**
- * Created by puppy on 2018-06-19.
+ * @author sdm32
+ * @since 2018-06-19
  */
 
-public class MyListVO {
-    String title;
-    String name;
-    int resId;
+
+public class MyListVO
+{
+    private String title;
+    private String name;
+    private int resId;
 
     public MyListVO(String title, String name, int resId) {
         this.title = title;
