@@ -128,7 +128,7 @@ public class Login extends Fragment {
 
         if(setting.getString("JWT","notExist").equals("notExist"))
         {
-            Toast.makeText(getActivity(), "로그인 안되있음", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "로그인이 안되어있습니다 로그인 해주세요", Toast.LENGTH_SHORT).show();
             return false;
         }else{
             Toast.makeText(getActivity(), "로그인 성공", Toast.LENGTH_SHORT).show();
