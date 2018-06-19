@@ -21,6 +21,7 @@ public class HomeMenu extends Fragment {
     LinearLayout map;
     LinearLayout myMenuLayout;
     LinearLayout noticeLayout;
+    LinearLayout myInfoLayout;
 
     public HomeMenu()
     {
@@ -43,6 +44,7 @@ public class HomeMenu extends Fragment {
         img6 = (ImageView)root.findViewById(R.id.imageView6);
         map = (LinearLayout)root.findViewById(R.id.findLayout);
         noticeLayout = (LinearLayout)root.findViewById(R.id.noticeLayout);
+        myInfoLayout = (LinearLayout)root.findViewById(R.id.myInfoLayout);
 
 
         myMenuLayout.setOnClickListener(v->{
@@ -61,6 +63,11 @@ public class HomeMenu extends Fragment {
         noticeLayout.setOnClickListener(v -> {
             MainActivity activity = (MainActivity)getActivity();
             activity.onFragmentChanged("Notice");
+        });
+
+        myInfoLayout.setOnClickListener(v -> {
+            MainActivity activity = (MainActivity)getActivity();
+            activity.onFragmentChanged("MyInfo");
         });
         return root;
     }

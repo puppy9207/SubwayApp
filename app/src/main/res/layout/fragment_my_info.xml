@@ -1,0 +1,68 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.puppy.subwayapp.MyInfo">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="나의 정보"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
+
+    <TextView
+        android:id="@+id/myInfoId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="ID"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/myInfoName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="이름"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/myInfoAddr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="주소"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/myInfoAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="나이"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/myInfoTel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="전화번호"
+        android:textSize="27sp" />
+
+    <TextView
+        android:id="@+id/myInfoPoint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="포인트"
+        android:textSize="27sp" />
+</LinearLayout>

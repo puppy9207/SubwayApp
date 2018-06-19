@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     SignUp signUp;
     Notice notice;
     NoticeContext noticeContext;
+    MyInfo myInfo;
     FragmentManager manager;
 
     @Override
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         myMenu = new MyMenu();
         signUp = new SignUp();
         notice = new Notice();
+        myInfo = new MyInfo();
         noticeContext= new NoticeContext();
     }
 
@@ -65,6 +67,10 @@ public class MainActivity extends AppCompatActivity {
             case "NoticeT":
                 manager.beginTransaction()
                         .replace(R.id.container, noticeContext).addToBackStack(null).commit();
+                break;
+            case "MyInfo":
+                manager.beginTransaction()
+                        .replace(R.id.container, myInfo).addToBackStack(null).commit();
                 break;
         }
     }
