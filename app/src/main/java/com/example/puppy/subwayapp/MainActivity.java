@@ -12,7 +12,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.puppy.subwayapp.vo.BbsVO;
+
+public class MainActivity extends AppCompatActivity implements Notice.TextSendCall{
 
     Login    login;
     HomeMenu  home;
@@ -93,4 +95,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
+   /**
+     * 공지사항 리스트에서 공지사항(단일)로 데이터를 전달하기 위한
+     * 메서드
+     * @param  vo   공지사항 VO
+     */
+   @Override
+   public void noticePrintText(BbsVO vo)
+   {
+           noticeContext.setInfo(vo);
+   }
 }
