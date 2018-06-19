@@ -99,7 +99,7 @@ public class Login extends Fragment {
     }
 
     /**
-     *  가져온 JWT 토큰을 SharedPreferences 영영게 저장한다.
+     *  가져온 JWT 토큰을 SharedPreferences 영역에 저장한다.
      */
     private void saveJWT(String JWT)
     {
@@ -117,7 +117,14 @@ public class Login extends Fragment {
      */
     private boolean isLogedin()
     {
-        SharedPreferences setting = getActivity().getSharedPreferences("login",0);
+        SharedPreferences setting = null;
+        try{
+            setting = getActivity().getSharedPreferences("login",0);
+        }catch(NullPointerException e){
+            Log.e("로그인 에러", "로그인 안되있음 - 익셉션 핸들링 완료;");
+            setting = null;
+            return false;
+        }
 
         if(setting.getString("JWT","notExist").equals("notExist"))
         {

@@ -41,7 +41,6 @@ public class NoticeContext extends Fragment {
         return root;
     }
 
-
     /**
      * 공지사항 VO를 메인 엑티비티에서 입력받아서 설정한다.
      * @param vo     공지사항 VO
@@ -52,4 +51,5 @@ public class NoticeContext extends Fragment {
         this.contents = vo.getContent();
         this.author   = vo.getUser_id();
     }
+
 }
