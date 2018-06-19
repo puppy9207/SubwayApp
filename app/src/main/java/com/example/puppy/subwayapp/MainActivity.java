@@ -12,9 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
 
-import com.example.puppy.subwayapp.vo.BbsVO;
-
-public class MainActivity extends AppCompatActivity implements Notice.TextSendCall{
+public class MainActivity extends AppCompatActivity {
 
     Login    login;
     HomeMenu  home;
@@ -29,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         manager = getSupportFragmentManager();
         login = (Login)manager.findFragmentById(R.id.mainF);
@@ -71,8 +70,7 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
+    public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main,menu);
@@ -80,8 +78,7 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.logout:
@@ -89,17 +86,5 @@ public class MainActivity extends AppCompatActivity implements Notice.TextSendCa
                 break;
         }
         return true;
-    }
-
-
-    /**
-     * 공지사항 리스트에서 공지사항(단일)로 데이터를 전달하기 위한
-     * 메서드
-     * @param  vo   공지사항 VO
-     */
-    @Override
-    public void noticePrintText(BbsVO vo)
-    {
-        noticeContext.setInfo(vo);
     }
 }
