@@ -56,7 +56,7 @@ public class Notice extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        List<BbsVO> notices = getNoticeList();
+        List<BbsVO> notices = getNoticeList();  // 여기서 받아옴
         String [] title = {"A","B","C","D"};                            // 디비에서 받아올  작성글 제목
         String [] author = {"z","x","y","u"};                           // 디비에서 받아올  작성글 작성자
         String [] context = {"가나다라","마바사아","자차카타","파하파하"};  // 디비에서 받아올 작성글 내용
