@@ -45,7 +45,7 @@ public class CustomVO
 	public void setClient_id(int client_id) {
 		this.client_id = client_id;
 	}
-	public String getName() { 
+	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
