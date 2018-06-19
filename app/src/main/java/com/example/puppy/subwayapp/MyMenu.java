@@ -7,10 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.puppy.subwayapp.vo.CustomVO;
 import com.example.puppy.subwayapp.vo.MyListVO;
 
 import java.util.ArrayList;
@@ -47,8 +50,8 @@ public class MyMenu extends Fragment {
         };
 
 
-        String[] title = {"id1","id2","id3","id4","id5"};//DB에서 가져온 customId
-        String[] kind = {"스파이시 이탈리안 아보카도","스파이시 이탈리안 아보카도","써브웨이 클럽","터키","로스트 비프"};//Custom\d
+        int[] title = {1,2,3,4,5};//DB에서 가져온 customId 이거 디비에서 받아오면 됨
+        String[] kind = {"스파이시 이탈리안 아보카도","스파이시 이탈리안 아보카도","써브웨이 클럽","터키","로스트 비프"};//이거 디비에서 받아오고
         // Inflate the layout for this fragment
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_my_menu, container, false);
         btn4 = root.findViewById(R.id.button4);
@@ -59,14 +62,20 @@ public class MyMenu extends Fragment {
             for(int j=0;j<kind.length;j++){
                 for(int w=0;w<kImgName.length;w++){
                     if (kind[j].equals(kImgName[w])){
-                        a[j]=w;
+                        a[j]=w; //여기에서 문자열 비교해서 포지션값 넘겨주는거임
                     }
                 }
             }
-            adapter.addItem(new MyListVO(title[i],kind[i],kindImg[a[i]]));
+            adapter.addItem(new CustomVO(title[i],kind[i]),kindImg[a[i]]);
         }
         myList.setAdapter(adapter);
-
+        myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //삭제 로직
+                return false;
+            }
+        });
         btn4.setOnClickListener(v -> {
             Intent intent=new Intent(getActivity(),CustomActivity.class);
             startActivity(intent);
@@ -77,15 +86,16 @@ public class MyMenu extends Fragment {
 
     public class MyMenuAdapter extends BaseAdapter
     {
-        ArrayList<MyListVO> items = new ArrayList<>();
-
+        ArrayList<CustomVO> items = new ArrayList<>();
+        ArrayList<Integer> rePosition = new ArrayList<>();
         @Override
         public int getCount() {
             return items.size();
         }
 
-        public void addItem(MyListVO vo){
+        public void addItem(CustomVO vo,int resId){
             items.add(vo);
+            rePosition.add(resId);
         }
 
         @Override
@@ -101,10 +111,11 @@ public class MyMenu extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ListMyView view = new ListMyView(getActivity());
-            MyListVO vo = items.get(position);
-            view.setMyTitle(vo.getTitle());
+            CustomVO vo = items.get(position);
+            int a = rePosition.get(position);
+            view.setMyTitle(vo.getCustom_id());
             view.setMyValue(vo.getName());
-            view.setMyImg(vo.getResId());
+            view.setMyImg(a);
 
             return view;
         }

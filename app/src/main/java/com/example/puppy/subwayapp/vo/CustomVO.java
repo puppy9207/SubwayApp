@@ -32,7 +32,12 @@ public class CustomVO
         this.jwt          = jwt;
     }
 
-    // --------------- getters & setters ----------------
+	public CustomVO(int custom_id, String name) {
+		this.custom_id = custom_id;
+		this.name = name;
+	}
+
+	// --------------- getters & setters ----------------
 	public int getCustom_id() {
 		return custom_id;
 	}

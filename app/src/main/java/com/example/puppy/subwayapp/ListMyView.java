@@ -36,8 +36,8 @@ public class ListMyView extends LinearLayout {
         tv2 = (TextView)findViewById(R.id.myValue);
     }
 
-    public void setMyTitle(String myTitle){
-        tv1.setText(myTitle);
+    public void setMyTitle(int myTitle){
+        tv1.setText(Integer.toString(myTitle));
     }
     public void setMyValue(String myValue){
         tv2.setText(myValue);

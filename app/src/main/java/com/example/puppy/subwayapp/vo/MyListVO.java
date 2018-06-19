@@ -8,21 +8,21 @@ package com.example.puppy.subwayapp.vo;
 
 public class MyListVO
 {
-    private String title;
+    private int title;
     private String name;
     private int resId;
 
-    public MyListVO(String title, String name, int resId) {
+    public MyListVO(int title, String name, int resId) {
         this.title = title;
         this.name = name;
         this.resId = resId;
     }
 
-    public String getTitle() {
+    public int getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(int title) {
         this.title = title;
     }
 
