@@ -40,7 +40,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="" />
 
-        <activity android:name=".CustomActivity"></activity>
+        <activity android:name=".CustomActivity" />
+        <activity android:name=".Map" />
     </application>
 
 </manifest>

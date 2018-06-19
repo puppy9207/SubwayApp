@@ -17,7 +17,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="추가 할 토핑 / 사이드 메뉴"
-            android:textColor="@color/green_lightest"
+            android:textColor="@color/colorAccent"
             android:textSize="22sp" />
 
         <GridView
